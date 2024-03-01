@@ -1,0 +1,22 @@
+{
+  "productos": [
+    {
+      "id": "56b8",
+      "title": "coca cola",
+      "description": "gaseosa coca cola",
+      "category": "Bebidas"
+    },
+    {
+      "id": "4abe",
+      "title": "Pepsi",
+      "description": "Gaseosa",
+      "category": "Bebidas"
+    },
+    {
+      "id": "b976",
+      "title": "Fideos",
+      "description": "Fideos Luchetti",
+      "category": "Alimentos"
+    }
+  ]
+}
