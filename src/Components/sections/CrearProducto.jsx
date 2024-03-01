@@ -4,13 +4,24 @@ import Form from "react-bootstrap/Form";
 //import { validarCategoria } from "../../helpers/validaciones";
 import clsx from 'clsx';
 import *as Yup from "yup";
-import { useFormik } from "formik";
+import { useFormik } from "formik"; //Con esas 3 librerias creamos el formulario, el objeto y validamos
+import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
 
 const CrearProducto = () => {
   //Los productos tendran las siguientes propiedades: Titulo, descripcion y categoria, ademas tendra un identificador unico
   // const [title,setTitle]=useState("");
   // const [description, setDescription]=useState("");
   // const [category, setCategory]=useState("");
+
+//UTILIZAMOS LA VARIABLE DE ENTORNO
+const API = import.meta.env.VITE_API;
+//console.log("API=> ", API);
+
+//UTILIZAMOS USE NAVIGATE DE REACT ROUTER DOM
+const navigate = useNavigate();
+
+//INICIO CONFIG FORMIK
 //AQUI USAREMOS FORMIK CREANDO UN ESQUEMA
 //adentro de shape se crea un objeto
   const ProductoSchema = Yup.object().shape(
@@ -35,8 +46,44 @@ const CrearProducto = () => {
     validationSchema: ProductoSchema,
     validateOnBlur: true,
     validateOnChange: true,
+
+    //------------FIN CONFIG FORMIK---------------
+    //aqui debemos crear una promesa para guardar el producto en nuestra base de datos. con await le decimos que espere y con async le decimos que es asincronico
     onSubmit: (values)=>{
       console.log("Values de Formik", values);
+      Swal.fire({
+        title: "Estas seguro de guardar este producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Guardar"
+      }).then(async(result) => {
+        if (result.isConfirmed) {
+          try {
+            const response = await fetch(`${API}/productos`,{
+              method: "POST",
+              headers:{
+                "content-Type": "aplication/json"
+              },
+              body: JSON.stringify(values)
+            });
+            //console.log("RESPUESTA", response);
+            //console.log(response.status);
+            if(response.status===201){//El codigo 201 especifica que fue exitoso
+              formik.resetForm();
+              Swal.fire({
+                title: "Exito!",
+                text: "Se creo el producto",
+                icon: "success"
+              });
+            }
+          } catch (error) {
+            console.log("ERROR=>", error);
+          }
+         
+        }
+      });  
     }
   })
 
@@ -53,6 +100,7 @@ const CrearProducto = () => {
 
   return (
     <div className="container py-3 my-3">
+        <Button variant="secondary" onClick={()=>{navigate(-1)}}>Atras</Button>
       <div className="text-center">
         <h2>Crear Producto</h2>
       </div>
@@ -141,6 +189,11 @@ const CrearProducto = () => {
           <option value="Alimentos">Alimentos</option>
           <option value="Limpieza">Limpieza</option>
         </Form.Select>
+        {formik.touched.category && formik.errors.category && (
+            <div className="mt-2 text-danger fw-bolder">
+              <span role="alert">{formik.errors.category}</span>
+            </div>
+          )}
         </Form.Group>
 
         <Button variant="primary" type="submit">
