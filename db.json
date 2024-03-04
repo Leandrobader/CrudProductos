@@ -7,16 +7,16 @@
       "category": "Bebidas"
     },
     {
-      "id": "4abe",
-      "title": "Pepsi",
-      "description": "Gaseosa",
-      "category": "Bebidas"
+      "title": "Pepsi 2Lts",
+      "description": "Gaseosa Pepsi 2Lts retornable",
+      "category": "Bebidas",
+      "id": "4abe"
     },
     {
-      "id": "b976",
-      "title": "Fideos",
-      "description": "Fideos Luchetti",
-      "category": "Alimentos"
+      "title": "Fideos Luchetti",
+      "description": "Fideos tallarines Luchetti 500g",
+      "category": "Alimentos",
+      "id": "b976"
     }
   ]
 }
