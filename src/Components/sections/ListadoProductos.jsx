@@ -1,10 +1,25 @@
 import { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import {Table } from "react-bootstrap";
 import Producto from "./Producto";
+import ModalEditar from "./ModalEditar";
 
 const ListadoProductos = () => {
     //DECLARAMOS EL USESTATE PARA GUARDAR LOS OBJETOS QUE ME TRAE LA RESPUESTA
     const [productos, setProductos]=useState([]);
+
+    const [show, setShow] = useState(false);
+    const [prodEdit, setProdEdit]=useState(undefined);
+
+    const handleClose = () => {
+      setProdEdit(undefined)
+      setShow(false);
+    }
+    const handleShow = (prod) => {
+      setProdEdit(prod)
+      setShow(true);
+    
+    }
+
     useState
     const API = import.meta.env.VITE_API;
     const getProductos=async()=>{
@@ -30,11 +45,14 @@ const ListadoProductos = () => {
 
     //console.log("State productos--> ",productos);
   return (
+  <>
+    <ModalEditar show={show} handleClose={handleClose} producto={prodEdit} getProductos={getProductos}/>
+
     <div className="container-fluid">
         <div className="text-center mb-3">
         <h2>Listado de Productos</h2>
         </div>
-      
+      <div className="table-responsive">
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>
@@ -48,12 +66,14 @@ const ListadoProductos = () => {
         <tbody>
           {productos.map((element, index)=>{
                 return(
-                    <Producto producto={element} key={index}/>//AQUI LE PASAMOS LA PROP AL COMPONENTE PRODUCTO
+                    <Producto producto={element} handleShow={handleShow} key={index}/>//AQUI LE PASAMOS LA PROP AL COMPONENTE PRODUCTO
                 )
           })}
         </tbody>
       </Table>
+      </div>
     </div>
+  </>
   );
 };
 

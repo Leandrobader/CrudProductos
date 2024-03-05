@@ -10,7 +10,7 @@ const Home = () => {
     const getProductos=async()=>{
         try {
             const response = await axios.get(`${API}/productos`);
-            console.log("RESPONSE AXIOS --> ", response);
+            //console.log("RESPONSE AXIOS --> ", response);
             setProductos(response.data)//AQUI YA NOS DA EL OBJETO DESESTRUCTURADO
         } catch (error) {
             console.log("ERROR-->", error);
