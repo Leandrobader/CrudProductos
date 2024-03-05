@@ -77,6 +77,7 @@ const navigate = useNavigate();
                 text: "Se creo el producto",
                 icon: "success"
               });
+              navigate("/administracion")
             }
           } catch (error) {
             console.log("ERROR=>", error);

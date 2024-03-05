@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 
-const Producto = ({producto}) => {//recibimos por props el producto a renderizar
+const Producto = ({producto, handleShow}) => {//recibimos por props el producto a renderizar
   const navigate = useNavigate();
   return (
     <>
@@ -17,6 +17,10 @@ const Producto = ({producto}) => {//recibimos por props el producto a renderizar
             <Button type="button" variant="warning" onClick={()=>{
               navigate(`/editar/${producto.id}`)
             }}>Editar</Button>
+            <Button type="button" variant="success" onClick={()=>{
+              console.log("Modal edicion");
+              handleShow(producto);
+            }}>M. Editar</Button>
             <Button type="button" variant="danger" onClick={()=>{
               console.log("Desde boton eliminar");
             }}>Eliminar</Button>
