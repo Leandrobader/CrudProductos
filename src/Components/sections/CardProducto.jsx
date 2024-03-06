@@ -1,10 +1,11 @@
 import { Button, Card,Col } from "react-bootstrap";
+import imagen from "../../assets/react.svg"
 
 const CardProducto = ({ producto }) => {
   return (
     <Col xs={12} md={6} lg={4}>
       <Card style={{ width: "18rem" }} className="my-2">
-        <Card.Img variant="top" src="holder.js/100px180" />
+        <Card.Img variant="top" src={imagen} />
         <Card.Body>
           <Card.Title>{producto.title}</Card.Title>
           <Card.Text>
