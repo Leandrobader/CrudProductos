@@ -6,6 +6,7 @@ import AcercaDeNosotros from "./Components/pages/AcercaDeNosotros"
 import Administracion from "./Components/pages/Administracion"
 import CrearProducto from "./Components/sections/CrearProducto"
 import Editar from "./Components/sections/Editar"
+import ErrorPage from "./Components/pages/ErrorPage"
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <Route path="/administracion" element={<Administracion></Administracion>}></Route>
       <Route path="/crear-producto" element={<CrearProducto></CrearProducto>}></Route>
       <Route path="/editar/:id" element={<Editar></Editar>}></Route> //EN ESTA RUTA LE PASAMOS COMO PARAMETRO EL ID Y ES OBLIGATORIO QUE SE LE PASE
+      <Route path="/*" element={<ErrorPage></ErrorPage>}></Route>
     </Routes>
     
     </main>
