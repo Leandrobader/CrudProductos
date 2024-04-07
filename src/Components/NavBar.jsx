@@ -2,9 +2,24 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import Login from "../Components/sections/Login"
+import { useState } from "react";
 
 const NavBar = () => {
+  
+  const [isOpen, setIsOpen]=useState(false);
+  const handleShow=()=>{
+    setIsOpen(true)
+  };
+
+  const handleClose=()=>{
+    setIsOpen(false);
+  }
+  
   return (
+    <>
+    <Login isOpen={isOpen} handleClose={handleClose}></Login>
     <Navbar expand="lg" bg="dark" data-bs-theme="dark">
       <Container>
         <Navbar.Brand href="#home">CRUD</Navbar.Brand>
@@ -18,9 +33,14 @@ const NavBar = () => {
             <NavLink to="/acercadenosotros" className={"nav-link "}>Acerca de Nosotros</NavLink>
             <NavLink to="/administracion" className={"nav-link "}>Administracion</NavLink>
           </Nav>
+          <Nav>
+            <Button variant="primary" className="mx-2 my-2 my-lg-0" onClick={handleShow}>Login</Button>
+            <Button variant="secondary" className="mx-2 my-2 my-lg-0">Logout</Button>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </>
   );
 };
 
