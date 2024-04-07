@@ -17,6 +17,12 @@
       "description": "Fideos tallarines Luchetti 500g",
       "category": "Alimentos",
       "id": "b976"
+    },
+    {
+      "id": "fc21",
+      "title": "Cereales",
+      "description": "Cereales Zucaritas 500g",
+      "category": "Alimentos"
     }
   ]
 }
