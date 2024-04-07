@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container, Row} from "react-bootstrap";
 import axios from "axios";
 import CardProducto from "../sections/CardProducto"
+import UserContext from "../../Context/UserContext";
 const Home = () => {
+  const {currentUser} = useContext(UserContext);
+
     //DECLARAMOS EL USESTATE PARA GUARDAR LOS OBJETOS QUE ME TRAE LA RESPUESTA
     const [productos, setProductos]=useState([]);
     useState
@@ -25,7 +28,7 @@ const Home = () => {
         }
     },[])//el array vacio significa que la funcion se ejecutara solamente en el montaje
 
-
+    //console.log("CURRENT USER ==> ", currentUser);
   return (
     <div>
       <div className="text-center">
