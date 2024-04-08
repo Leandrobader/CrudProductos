@@ -24,7 +24,7 @@ const ListadoProductos = () => {
     const API = import.meta.env.VITE_API;
     const getProductos=async()=>{
         try {
-            const response =await fetch(`${API}/productos`);//obtenemos la respuesta (el objeto)
+            const response =await fetch(`${API}/products`);//obtenemos la respuesta (el objeto)
             //console.log("RESPONSE: ", response);
             const resJson=await response.json();//Lo transformamos en un objeto JSON
             //console.log("RESP JSON: ", resJson);
@@ -64,9 +64,9 @@ const ListadoProductos = () => {
           </tr>
         </thead>
         <tbody>
-          {productos.map((element, index)=>{
+          {productos.map((element)=>{
                 return(
-                    <Producto producto={element} handleShow={handleShow} key={index} getProductos={getProductos}/>//AQUI LE PASAMOS LA PROP AL COMPONENTE PRODUCTO
+                    <Producto producto={element} handleShow={handleShow} key={element._id} getProductos={getProductos}/>//AQUI LE PASAMOS LA PROP AL COMPONENTE PRODUCTO
                 )
           })}
         </tbody>
