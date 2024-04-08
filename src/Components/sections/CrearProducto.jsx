@@ -7,8 +7,12 @@ import *as Yup from "yup";
 import { useFormik } from "formik"; //Con esas 3 librerias creamos el formulario, el objeto y validamos
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../Context/UserContext";
+import { useContext } from "react";
+import axios from "axios";
 
 const CrearProducto = () => {
+  const {currentUser}=useContext(UserContext);
   //Los productos tendran las siguientes propiedades: Titulo, descripcion y categoria, ademas tendra un identificador unico
   // const [title,setTitle]=useState("");
   // const [description, setDescription]=useState("");
@@ -61,13 +65,19 @@ const navigate = useNavigate();
       }).then(async(result) => {
         if (result.isConfirmed) {
           try {
-            const response = await fetch(`${API}/productos`,{
+            //OPCION CON AXIOS YA CONFIGURADO EL HEADER AUTHORIZATION
+            const response = await axios.post(`${API}/products`, values);
+
+            
+            //OPCION CON FETCH INCLUIDO EL HEADER AUTHORIZATION
+            /*const response = await fetch(`${API}/products`,{
               method: "POST",
               headers:{
-                "content-Type": "aplication/json"
+                "content-Type": "aplication/json",
+                "Authorization": `Bearer ${currentUser.token}`
               },
               body: JSON.stringify(values)
-            });
+            });*/
             //console.log("RESPUESTA", response);
             //console.log(response.status);
             if(response.status===201){//El codigo 201 especifica que fue exitoso

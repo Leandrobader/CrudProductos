@@ -10,7 +10,7 @@ const Login = ({ isOpen, handleClose }) => {
 
   const {setCurrentUser, SaveAuth} = useContext(UserContext);
 
-  const API = import.meta.env.VITE_APIV2;
+  const API = import.meta.env.VITE_API;
 
 
 
