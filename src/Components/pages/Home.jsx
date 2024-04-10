@@ -12,7 +12,7 @@ const Home = () => {
     const API = import.meta.env.VITE_API;
     const getProductos=async()=>{
         try {
-            const response = await axios.get(`${API}/productos`);
+            const response = await axios.get(`${API}/products`);
             //console.log("RESPONSE AXIOS --> ", response);
             setProductos(response.data)//AQUI YA NOS DA EL OBJETO DESESTRUCTURADO
         } catch (error) {

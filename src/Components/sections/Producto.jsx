@@ -23,7 +23,7 @@ const Producto = ({producto, handleShow, getProductos}) => {//recibimos por prop
       }).then(async(result) => {
         if (result.isConfirmed) {
             try {
-                await fetch(`${API}/productos/`+ producto.id, {method: "DELETE"})
+                await fetch(`${API}/productos/`+ producto._id, {method: "DELETE"})
                 Swal.fire({
                     title: "BORRADO!",
                     text: "El producto a sido eliminado con exito!",
@@ -45,13 +45,13 @@ const Producto = ({producto, handleShow, getProductos}) => {//recibimos por prop
   return (
     <>
       <tr>
-        <td>{producto.id}</td>
+        <td>{producto._id}</td>
         <td>{producto.title}</td>
         <td>{producto.description}</td>
         <td>{producto.category}</td>
         <td className="d-flex justify-content-around">
             <Button type="button" variant="warning" onClick={()=>{
-              navigate(`/editar/${producto.id}`)
+              navigate(`/editar/${producto._id}`)
             }}>Editar</Button>
             <Button type="button" variant="success" onClick={()=>{
               console.log("Modal edicion");
