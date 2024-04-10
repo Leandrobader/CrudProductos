@@ -17,7 +17,7 @@ const Editar = () => {
   const getProducto = async () => {
     try {
       //UTILIZO AXIOS PARA OBTENER LOS DATOS DEL OBJETO SEGUN EL ID
-      const { data } = await axios.get(`${API}/productos/${id}`);
+      const { data } = await axios.get(`${API}/products/${id}`);
       setProducto(data);
     } catch (error) {
       console.log("ERROR => ", error);
@@ -75,13 +75,20 @@ const Editar = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const response = await fetch(`${API}/productos/${id}`, {
+            const updateProduct={
+              _id: producto._id,
+              title: values.title,
+              category: values.category,
+              description: values.description
+            };
+            /*const response = await fetch(`${API}/productos/${id}`, {
               method: "PUT",
               headers: {
                 "content-Type": "aplication/json",
               },
               body: JSON.stringify(values),
-            });
+            });*/
+            const response = await axios.put(`${API}/products/update`, updateProduct );
             //console.log("RESPUESTA", response);
             //console.log(response.status);
             if (response.status === 200) {
