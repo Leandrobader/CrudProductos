@@ -49,16 +49,16 @@ const NavBar = () => {
               )}
             </Nav>
             <Nav>
-              <Button
+              {(currentUser === undefined && <Button
                 variant="primary"
                 className="mx-2 my-2 my-lg-0"
                 onClick={handleShow}
               >
                 Login
-              </Button>
-              <Button variant="secondary" className="mx-2 my-2 my-lg-0" onClick={Logout}>
+              </Button>)}
+              {currentUser !== undefined && <Button variant="secondary" className="mx-2 my-2 my-lg-0" onClick={Logout}>
                 Logout
-              </Button>
+              </Button>}
             </Nav>
           </Navbar.Collapse>
         </Container>
