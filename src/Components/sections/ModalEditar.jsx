@@ -63,7 +63,14 @@ const ModalEditar = ({ show, handleClose, producto, getProductos }) => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const response = await axios.put(`${API}/productos/${producto.id}`, values);
+            const productUpdate = {
+              _id: producto._id,
+              title: values.title,
+              category: values.category,
+              description:values.description
+            }
+            const response = await axios.put(`${API}/products/update`, productUpdate)
+            //const response = await axios.put(`${API}/productos/${producto.id}`, values);
             //console.log("RESPUESTA", response);
             //console.log(response.status);
             if (response.status === 200) {
