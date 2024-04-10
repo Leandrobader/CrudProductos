@@ -1,0 +1,28 @@
+{
+  "productos": [
+    {
+      "title": "coca cola 2.5Lts",
+      "description": "gaseosa coca cola",
+      "category": "Bebidas",
+      "id": "56b8"
+    },
+    {
+      "title": "Pepsi 3Lts",
+      "description": "Gaseosa descartable",
+      "category": "Bebidas",
+      "id": "4abe"
+    },
+    {
+      "title": "Fideos Luchetti 500g",
+      "description": "Fideos tallarines Luchetti 500g",
+      "category": "Alimentos",
+      "id": "b976"
+    },
+    {
+      "id": "fc21",
+      "title": "Cereales",
+      "description": "Cereales Zucaritas 500g",
+      "category": "Alimentos"
+    }
+  ]
+}
