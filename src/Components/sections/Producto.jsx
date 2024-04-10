@@ -23,7 +23,8 @@ const Producto = ({producto, handleShow, getProductos}) => {//recibimos por prop
       }).then(async(result) => {
         if (result.isConfirmed) {
             try {
-                await fetch(`${API}/productos/`+ producto._id, {method: "DELETE"})
+              await axios.delete(`${API}/products/${producto._id}`); 
+              //await fetch(`${API}/productos/`+ producto._id, {method: "DELETE"})
                 Swal.fire({
                     title: "BORRADO!",
                     text: "El producto a sido eliminado con exito!",
